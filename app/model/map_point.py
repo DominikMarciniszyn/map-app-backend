@@ -13,4 +13,4 @@ class MapPoint(BaseModel):
     latitude = NumberField()
     longitude = NumberField()
     external_id = UUIDField()
-    map = ForeignKeyField(Map, backref='map_id')
+    map_id = ForeignKeyField(Map, backref='map_id')
