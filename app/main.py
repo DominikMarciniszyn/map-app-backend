@@ -1,8 +1,9 @@
-import os
+from fastapi import FastAPI
 
 
-print(os.getenv('POSTGRES_DB'))
-print(os.getenv('POSTGRES_USER'))
-print(os.getenv('POSTGRES_PASSWORD'))
-print(os.getenv('DATABASE_HOST'))
-print(os.getenv('DATABASE_PORT'))
+app = FastAPI()
+
+
+@app.get('/ping')
+def ping():
+    return {'status': 'alive'}
