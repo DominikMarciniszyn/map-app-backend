@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ValidationError, validator
 
 
-class MapValidator(BaseModel):
+class Map(BaseModel):
     name: str
     latitude: float
     longitude: float
