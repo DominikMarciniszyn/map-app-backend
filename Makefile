@@ -4,5 +4,5 @@ run: ## Run the server
 run-with-reload: ## Run the server with hot reload options - it reacts on code changes
 	uvicorn app.main:app --reload
 
-db-create-tables: ## Create tables in database
-	python ./app/utils/create_tables.py
+db-run: ## Run the docker image with Postgres
+	docker run --name map-db -p 5430:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=map-app-db -d postgres
