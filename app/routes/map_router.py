@@ -25,4 +25,6 @@ def get_map(id: int):
     return map_object
 
 
-
+@router.delete('/map/{id}')
+def delete_map(id: int):
+    pass
