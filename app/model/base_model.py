@@ -1,16 +1,20 @@
 from peewee import Model, PostgresqlDatabase
-import os
+import configparser
 
 
-database = PostgresqlDatabase(
-    os.getenv('POSTGRES_DB'),
-    user=os.getenv('POSTGRES_USER'),
-    password=os.getenv('POSTGRES_PASSWORD'),
-    host=os.getenv('DATABASE_HOST'),
-    port=os.getenv('DATABASE_PORT')
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+
+db = PostgresqlDatabase(
+    config['postgres']['name'],
+    user=config['postgres']['user'],
+    password=config['postgres']['passwd'],
+    host=config['postgres']['host'],
+    port=config['postgres']['port']
 )
 
 
 class BaseModel(Model):
     class Meta:
-        database = database
+        database = db
