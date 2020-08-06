@@ -10,6 +10,14 @@ OBJECT_DOES_NOT_EXIST = (
     'This object does not exist in the database'
 )
 
+OBJECT_DELETED = (
+    'Object was deleted successfully'
+)
+
+THERE_IS_NOTHING_TO_DELETE = (
+    'Object which you would like to delete does not exist in the database'
+)
+
 
 class MapService:
     def create_map(self, map: MapSchema):
@@ -53,6 +61,12 @@ class MapService:
         db_map.save()
         return db_map
 
-    def delete_map_by_name(self, mapID: int):
-        result = Map.delete().where(Map.id == mapID)
-        return result
+    def delete_map_by_id(self, mapID: int):
+        map_object = self.get_map_by_id(mapID)
+
+        if map_object is OBJECT_DOES_NOT_EXIST:
+            print(f'Deleting object with ID={mapID}')
+            Map.delete().where(Map.id == mapID)
+            return {'Result': OBJECT_DELETED}
+        else:
+            return {'Result': THERE_IS_NOTHING_TO_DELETE}
