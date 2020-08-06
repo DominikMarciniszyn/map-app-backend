@@ -32,5 +32,5 @@ def update_map(id: int):
 
 @router.delete('/map/{id}')
 def delete_map(id: int):
-    map_object = map_service.delete_map(id)
+    map_object = map_service.delete_map_by_id(id)
     return map_object
