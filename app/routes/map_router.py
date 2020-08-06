@@ -25,6 +25,12 @@ def get_map(id: int):
     return map_object
 
 
+@router.patch('/map/{id}')
+def update_map(id: int):
+    pass
+
+
 @router.delete('/map/{id}')
 def delete_map(id: int):
-    pass
+    map_object = map_service.delete_map(id)
+    return map_object
