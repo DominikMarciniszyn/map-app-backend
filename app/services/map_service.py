@@ -56,7 +56,7 @@ class MapService:
         except Exception:
             return {'Result': OBJECT_DOES_NOT_EXIST}
 
-    def update_map(self, map: MapSchema):
+    def update_map(self, id: int, map: MapSchema):
         db_map = Map.update(map)
         db_map.save()
         return db_map

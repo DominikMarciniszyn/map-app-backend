@@ -19,18 +19,19 @@ def get_all_maps():
     return maps
 
 
-@router.get('/map/{id}')
+@router.get('/map/{id}', tags=['map'])
 def get_map(id: int):
     map_object = map_service.get_map_by_id(id)
     return map_object
 
 
-@router.patch('/map/{id}')
-def update_map(id: int):
-    pass
+@router.patch('/map/{id}', tags=['map'])
+def update_map(id: int, map: MapSchema):
+    map_object = map_service.update_map(id, map)
+    return map_object
 
 
-@router.delete('/map/{id}')
+@router.delete('/map/{id}', tags=['map'])
 def delete_map(id: int):
     map_object = map_service.delete_map_by_id(id)
     return map_object
